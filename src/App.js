@@ -1,6 +1,10 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import ModalExampleTopAligned from "./ShopViewModal";
+import SwipeViewModel from "./SwipeViewModel";
+import {Link} from "react-router-dom";
+
 
 function App() {
   return (
@@ -18,6 +22,16 @@ function App() {
         >
           Learn React
         </a>
+        <ModalExampleTopAligned/>
+        <Link to="/swipe">
+          Swipe Card
+        </Link>
+        <Link to="/interest">
+          Interest Card
+        </Link>
+        <Link to="/demographic">
+          Demographic Card
+        </Link>
       </header>
     </div>
   );
