@@ -17,7 +17,6 @@ class ModalExampleTopAligned extends Component {
         this.getFavorites = this.getFavorites.bind(this);
         this.getCart = this.getCart.bind(this);
         this.loadProducts()
-
     }
 
     loadProducts = () => {

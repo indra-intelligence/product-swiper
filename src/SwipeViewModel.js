@@ -100,68 +100,72 @@ class SwipeViewModel extends Component {
     render() {
 
         return (
-            <Modal trigger={<Button>Show Modal</Button>} size={'mini'} centered={false}>
-                <Modal.Header><TopBar/></Modal.Header>
-                <Modal.Content image>
-                    <Grid textAlign='center' verticalAlign='middle' columns={3}>
-                        <Grid.Row>
-                            <Grid.Column width={1}>
-                                <Transition
-                                    animation="bounce"
-                                    duration="2000"
-                                    visible={this.state.downVisibility}
-                                >
-                                    <Icon link name='thumbs down' floated='left' onClick={() => this.productDownVote()}/>
-                                </Transition>
-                            </Grid.Column>
-                            <Grid.Column width={10}>
-                                <Transition
-                                    animation="bounce"
-                                    duration="2000"
-                                    visible={this.state.favoriteVisibility}
-                                >
-                                    <Icon link name='like' onClick={() => ds.addProductToFavorites(this.state.products.pop())} />
-                                </Transition>
-                                {this.cardGallery()}
-                                <Transition
-                                    animation="bounce"
-                                    duration="2000"
-                                    visible={this.state.cartVisibility}
-                                >
-                                <Icon link name='cart' onClick={() => ds.addProductToCart(this.state.products.pop())}/>
-                                </Transition>
-                            </Grid.Column>
-                            <Grid.Column width={1}>
-                                <Transition
-                                    animation="bounce"
-                                    duration="2000"
-                                    visible={this.state.upVisibility}
-                                >
-                                    <Icon link name='thumbs up' floated='left' onClick={() => this.productUpvote()}/>
-                                </Transition>
+            <div>
+                <h1> A shoc page </h1>
+                <p> enter text to match their page </p>
+                <Modal trigger={<Button>Show Modal</Button>} size={'mini'} centered={false}>
+                    <Modal.Header><TopBar/></Modal.Header>
+                    <Modal.Content image>
+                        <Grid textAlign='center' verticalAlign='middle' columns={3}>
+                            <Grid.Row>
+                                <Grid.Column width={1}>
+                                    <Transition
+                                        animation="bounce"
+                                        duration="2000"
+                                        visible={this.state.downVisibility}
+                                    >
+                                        <Icon link name='thumbs down' floated='left' onClick={() => this.productDownVote()}/>
+                                    </Transition>
+                                </Grid.Column>
+                                <Grid.Column width={10}>
+                                    <Transition
+                                        animation="bounce"
+                                        duration="2000"
+                                        visible={this.state.favoriteVisibility}
+                                    >
+                                        <Icon link name='like' onClick={() => ds.addProductToFavorites(this.state.products.pop())} />
+                                    </Transition>
+                                    {this.cardGallery()}
+                                    <Transition
+                                        animation="bounce"
+                                        duration="2000"
+                                        visible={this.state.cartVisibility}
+                                    >
+                                    <Icon link name='cart' onClick={() => ds.addProductToCart(this.state.products.pop())}/>
+                                    </Transition>
+                                </Grid.Column>
+                                <Grid.Column width={1}>
+                                    <Transition
+                                        animation="bounce"
+                                        duration="2000"
+                                        visible={this.state.upVisibility}
+                                    >
+                                        <Icon link name='thumbs up' floated='left' onClick={() => this.productUpvote()}/>
+                                    </Transition>
 
-                            </Grid.Column>
-                        </Grid.Row>
-                        <Grid.Row>
-                            <Button>Product Details</Button>
-                        </Grid.Row>
-                    </Grid>
-                </Modal.Content>
-                <Modal.Actions>
-                    <Grid textAlign='center' columns={2}>
-                        <Grid.Row>
-                            <Grid.Column>
-                                <Button onClick={() => this.getCart()}>Cart</Button>
-                            </Grid.Column>
-                            <Grid.Column>
-                                <Button onClick={() => this.getFavorites()}>Favorites</Button>
-                            </Grid.Column>
+                                </Grid.Column>
+                            </Grid.Row>
+                            <Grid.Row>
+                                <Button>Product Details</Button>
+                            </Grid.Row>
+                        </Grid>
+                    </Modal.Content>
+                    <Modal.Actions>
+                        <Grid textAlign='center' columns={2}>
+                            <Grid.Row>
+                                <Grid.Column>
+                                    <Button onClick={() => this.getCart()}>Cart</Button>
+                                </Grid.Column>
+                                <Grid.Column>
+                                    <Button onClick={() => this.getFavorites()}>Favorites</Button>
+                                </Grid.Column>
 
-                        </Grid.Row>
-                    </Grid>
+                            </Grid.Row>
+                        </Grid>
 
-                </Modal.Actions>
-            </Modal>
+                    </Modal.Actions>
+                </Modal>
+            </div>
 
 
                 )

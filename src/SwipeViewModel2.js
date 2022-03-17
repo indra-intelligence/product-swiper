@@ -17,9 +17,6 @@ const data = [
    [ {title: "kittens", img: kittenImage}],
    [ {title: "music", img: musicImage}],
    [ {title: "skulls", img: skullsImage}],
-
-
-
 ]
 
 let http = new HttpService();

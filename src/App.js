@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from './logo.svg';
+import logo from './assets/imgs/logo.png';
 import './App.css';
 import ModalExampleTopAligned from "./ShopViewModal";
 import SwipeViewModel from "./SwipeViewModel";
@@ -10,27 +10,9 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <ModalExampleTopAligned/>
+        <img src={logo} className="" alt="logo" />
         <Link to="/swipe">
-          Swipe Card
-        </Link>
-        <Link to="/interest">
-          Interest Card
-        </Link>
-        <Link to="/demographic">
-          Demographic Card
+          A Shoc Demo
         </Link>
       </header>
     </div>
