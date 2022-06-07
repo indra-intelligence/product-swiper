@@ -143,3 +143,34 @@ h1, h2 {
   transform: translate(-50%, 0);
   margin-left: 50%;
 }
+
+.ui.rounded.image img {
+  border-radius: 2.0em;
+}
+
+.ui.inverted.segment {
+  border-radius: 2.0em;
+}
+
+.mini.modal {
+  border-radius: 2.0em;
+}
+
+.mini.modal .image.content {
+  border-radius: 2.0em;
+}
+
+.ui.bottom.attached.label {
+  background: none;
+    color: white;
+    font-size: 2em;
+}
+
+.homepage-modal {
+  position: fixed;
+  top: 40%;
+  left: 40%;
+  background-color: lightgray;
+  padding: 5%;
+  border-radius: 2em;
+}

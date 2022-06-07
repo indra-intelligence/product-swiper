@@ -33,8 +33,21 @@ class DataService {
     getNextProduct = () => {
         let nextProduct = products.pop();
         console.log(nextProduct)
-        currentProductId = nextProduct.product_id;
-        return [nextProduct]
+        if (nextProduct == null) {
+            return null;
+        } else {
+            currentProductId = nextProduct.product_id;
+            return [nextProduct];
+        }
+        
+    }
+
+    isLastProduct = () => {
+        if (products.length < 2){
+            return true;
+        } else {
+            return false;
+        }
     }
 
     downVote = () => {

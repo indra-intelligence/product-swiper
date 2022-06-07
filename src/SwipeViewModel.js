@@ -1,11 +1,13 @@
 import React, {Component} from 'react'
-import {Button, Icon, Image, Modal, Grid, Transition} from 'semantic-ui-react'
+import {Button, Icon, Image, Modal, Grid, Transition, Header, Segment, Label, Message} from 'semantic-ui-react'
 import TopBar from "./TopBar";
 import productImage from "./assets/imgs/0530037910636NEW_00_622.jpg"
 import DataService from "./services/data-service";
 import HttpService from "./services/http-service";
 import Cards, { Card } from "./components/react-swipe-cards/index"
 import TinderCard from 'react-tinder-card'
+import { useHistory } from 'react-router-dom';
+
 
 const data = ['Alexandre', 'Thomas', 'Lucien']
 
@@ -63,7 +65,6 @@ class SwipeViewModel extends Component {
     onSwipe = (direction) => {
         console.log("swiped " + direction)
 
-
         if (direction == 'right') {
             this.productUpvote();
         } else if (direction == 'left') {
@@ -75,7 +76,12 @@ class SwipeViewModel extends Component {
         } else if (direction == 'down') {
             ds.addProductToCart(this.state.products[0])
             this.setState((prevState) => ({ cartVisibility: !prevState.cartVisibility,  products: ds.getNextProduct() }))
+        }
 
+         if (ds.isLastProduct()){
+            const history = useHistory();
+            history.push("/");
+            return;
         }
 
 
@@ -88,84 +94,83 @@ class SwipeViewModel extends Component {
 
     cardGallery = () => {
         let self = this;
-        const list = this.state.products.map((product) =>
-            <TinderCard onSwipe={this.onSwipe} flickOnSwipe={false} onCardLeftScreen={() => this.onCardLeftScreen('fooBar')}>
-                <Image wrapped size='medium' src={product.image_link} />
-            </TinderCard>
-        );
-        return (list);
+
+        if(this.state.products != null) {
+            const list = this.state.products.map((product) =>
+                <div>
+                    <Segment inverted>
+                        <Header as='h4' inverted color='black'>
+                          {product.category}
+                        </Header>
+                    </Segment>
+                    <TinderCard onSwipe={this.onSwipe} flickOnSwipe={false} onCardLeftScreen={() => this.onCardLeftScreen('fooBar')}>
+                        <Image rounded wrapped src={product.image_link} />
+                        <Label attached='bottom' clear>{product.name}</Label>
+                    </TinderCard>
+
+                </div>
+            );
+            return (list);
+        }
+        else {
+            return (
+                <div>
+                <h1> Congrats!</h1>
+                <p> You're 83% aligned with Billy Kemper</p>
+                <Message>
+                    <Message.Header>Use the code below to get 15% off your next purchase</Message.Header>
+                    <h1>
+                     bcx-5235
+                    </h1>
+                  </Message>
+                </div>
+            );
+        }
     };
 
 
     render() {
 
         return (
-            <div>
-                <h1> A shoc page </h1>
-                <p> enter text to match their page </p>
-                <Modal trigger={<Button>Show Modal</Button>} size={'mini'} centered={false}>
-                    <Modal.Header><TopBar/></Modal.Header>
+            <div className="homepage-modal">
+                <h1> Hey You ! </h1>
+                <p> Take This Quiz To Get 15% Off Your Next Order </p>
+                <Modal trigger={<Button>Let's Do It</Button>} size={'mini'} rounded-corners centered={false}>
                     <Modal.Content image>
-                        <Grid textAlign='center' verticalAlign='middle' columns={3}>
+                        <Grid textAlign='center' verticalAlign='middle' columns={1}>
                             <Grid.Row>
-                                <Grid.Column width={1}>
-                                    <Transition
-                                        animation="bounce"
-                                        duration="2000"
-                                        visible={this.state.downVisibility}
-                                    >
-                                        <Icon link name='thumbs down' floated='left' onClick={() => this.productDownVote()}/>
-                                    </Transition>
-                                </Grid.Column>
-                                <Grid.Column width={10}>
-                                    <Transition
-                                        animation="bounce"
-                                        duration="2000"
-                                        visible={this.state.favoriteVisibility}
-                                    >
-                                        <Icon link name='like' onClick={() => ds.addProductToFavorites(this.state.products.pop())} />
-                                    </Transition>
+                                <Grid.Column >
                                     {this.cardGallery()}
-                                    <Transition
-                                        animation="bounce"
-                                        duration="2000"
-                                        visible={this.state.cartVisibility}
-                                    >
-                                    <Icon link name='cart' onClick={() => ds.addProductToCart(this.state.products.pop())}/>
-                                    </Transition>
                                 </Grid.Column>
-                                <Grid.Column width={1}>
+                            </Grid.Row>
+                            <Grid.Row columns={3}>
+                                <Grid.Column>
                                     <Transition
                                         animation="bounce"
                                         duration="2000"
                                         visible={this.state.upVisibility}
                                     >
-                                        <Icon link name='thumbs up' floated='left' onClick={() => this.productUpvote()}/>
+                                        <Icon link circular inverted name='thumbs up' floated='bottom'  size='big' onClick={() => this.productUpvote()}/>
                                     </Transition>
-
                                 </Grid.Column>
-                            </Grid.Row>
-                            <Grid.Row>
-                                <Button>Product Details</Button>
+                                <Grid.Column>
+                                    <Icon link circular inverted name='redo' floated='bottom'  size='big' onClick={() => this.productUpvote()}/>
+                                </Grid.Column>
+                                <Grid.Column>
+                                  <Transition
+                                        animation="bounce"
+                                        duration="2000"
+                                        visible={this.state.downVisibility}
+                                    >
+                                        <Icon link circular inverted name='thumbs down' floated='bottom' size='big' onClick={() => this.productDownVote()}/>
+                                    </Transition>
+                                </Grid.Column>
                             </Grid.Row>
                         </Grid>
                     </Modal.Content>
-                    <Modal.Actions>
-                        <Grid textAlign='center' columns={2}>
-                            <Grid.Row>
-                                <Grid.Column>
-                                    <Button onClick={() => this.getCart()}>Cart</Button>
-                                </Grid.Column>
-                                <Grid.Column>
-                                    <Button onClick={() => this.getFavorites()}>Favorites</Button>
-                                </Grid.Column>
-
-                            </Grid.Row>
-                        </Grid>
-
-                    </Modal.Actions>
                 </Modal>
             </div>
+
 
 
                 )
